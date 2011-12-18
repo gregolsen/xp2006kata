@@ -29,11 +29,11 @@ morphLine :: String -> [[Int]]
 morphLine = map (map (\x -> if x == ' ' then 0 else 1)) . chunk 3
 
 decode :: [Int] -> Maybe Int
-decode codes = 
+decode digitsCodes =
   let
-    decoded = map (`Map.lookup` digits) codes
-    exped = zipWith fmap expsFuncs10 decoded 
-  in foldl1 (\acc x -> (+) <$> acc <*> x) exped 
+    decodedDigits    = map (`Map.lookup` digits) digitsCodes
+    multipliedDigits = zipWith fmap expsFuncs10 decodedDigits
+  in foldl1 (\acc x -> (+) <$> acc <*> x) multipliedDigits
   
 -- slice text on files and group them by 3 (last empty line removed with init)
 sliceText = map init . chunk 4 . lines
