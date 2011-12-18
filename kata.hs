@@ -50,6 +50,6 @@ main = do
   text <- readFile "kata.test"
   let
     initialLines = sliceText text
-    numbers = initialLines >>= replaceSymbols  >>= formDigits >>= zipWithExponents >>= decodeDigits
+    numbers = initialLines >>= replaceSymbols >>= formDigits >>= zipWithExponents >>= decodeDigits
   mapM_ print numbers
 
