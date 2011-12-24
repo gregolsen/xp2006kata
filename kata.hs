@@ -38,13 +38,13 @@ decode digitsCodes =
 -- slice text on files and group them by 3 (last empty line removed with init)
 sliceText = map init . chunk 4 . lines
 -- replace non-empty symbol with 1 and space with 0 
-replaceSymbols = flip (:) [] . map morphLine
+replaceSymbols = return . map morphLine
 -- form single array for each digit 
-formDigits = flip (:) [] . foldl1 (zipWith (++))
+formDigits = return . foldl1 (zipWith (++))
 -- zips binary 0 and 1 with exponents of 2
-zipWithExponents = flip (:) [] . map (zipWith (*) exps2)
+zipWithExponents = return . map (zipWith (*) exps2)
 -- sum digit array and decode all digits 
-decodeDigits = flip (:) [] . decode . map sum
+decodeDigits = return . decode . map sum
 
 main = do
   text <- readFile "kata.test"
